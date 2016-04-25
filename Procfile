@@ -1,1 +1,1 @@
-web: gunicorn eduraam.wsgi --log-file -
+web: gunicorn perceptum.wsgi --log-file -
