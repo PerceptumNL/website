@@ -40,6 +40,9 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_PASSWORD = os.environ['SENDGRID_PASSWORD']
 SERVER_EMAIL = 'website@perceptum.nl'
 
+
+INSTALLED_APPS += ['storages']
+
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
