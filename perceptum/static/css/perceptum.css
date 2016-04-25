@@ -105,3 +105,16 @@ nav ul li.active {
 nav ul li.active a:hover {
   background: none;
 }
+
+.collection.contact-list,
+.collection.contact-list .collection-item {
+  border: none;
+}
+
+.collection.contact-list .collection-item {
+  padding: 5px 10px;
+}
+
+.collection.contact-list h6 {
+  font-weight: 600;
+}
