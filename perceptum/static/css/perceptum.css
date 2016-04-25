@@ -118,3 +118,7 @@ nav ul li.active a:hover {
 .collection.contact-list h6 {
   font-weight: 600;
 }
+
+.slides .caption {
+  background-color: rgba(0, 0, 0, 0.5);
+}
