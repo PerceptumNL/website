@@ -5,7 +5,9 @@ from django.db import models
 from wagtail.wagtailcore.models import Page
 from wagtail.wagtailcore.fields import RichTextField
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, InlinePanel
+from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailcore.models import Orderable
+from wagtail.wagtailimages.models import Image
 from modelcluster.fields import ParentalKey
 
 class HomePage(Page):
@@ -36,8 +38,16 @@ class HomePageTagLines(Orderable):
   page = ParentalKey(HomePage, related_name='taglines')
   title = models.CharField(max_length=255)
   body = RichTextField()
+  cover = models.ForeignKey(
+      'wagtailimages.Image',
+      null=True,
+      blank=True,
+      on_delete=models.SET_NULL,
+      related_name='+'
+  )
 
   panels = [
     FieldPanel('title'),
-    FieldPanel('body')
+    FieldPanel('body'),
+    ImageChooserPanel('cover')
   ]
