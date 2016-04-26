@@ -2,12 +2,17 @@ from __future__ import unicode_literals
 
 from django.db import models
 
-from wagtail.wagtailcore.models import Page
-from wagtail.wagtailcore.fields import RichTextField
-from wagtail.wagtailadmin.edit_handlers import FieldPanel, InlinePanel
+from wagtail.wagtailcore import blocks
+from wagtail.wagtailcore.models import Page, Orderable
+from wagtail.wagtailcore.fields import StreamField, RichTextField
+from wagtail.wagtailadmin.edit_handlers import (FieldPanel,
+                                                InlinePanel,
+                                                PageChooserPanel,
+                                                StreamFieldPanel)
+from wagtail.wagtailimages.blocks import ImageChooserBlock
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
-from wagtail.wagtailcore.models import Orderable
 from wagtail.wagtailimages.models import Image
+from wagtail.wagtailsearch import index
 from modelcluster.fields import ParentalKey
 
 class HomePage(Page):
@@ -27,10 +32,18 @@ class HomePageFeature(Orderable):
   page = ParentalKey(HomePage, related_name='features')
   title = models.CharField(max_length=255)
   body = RichTextField()
+  read_more_page = models.ForeignKey(
+      'wagtailcore.Page',
+      null=True,
+      blank=True,
+      on_delete=models.SET_NULL,
+      related_name='+',
+  )
 
   panels = [
     FieldPanel('title'),
-    FieldPanel('body')
+    FieldPanel('body'),
+    PageChooserPanel('read_more_page')
   ]
 
 
@@ -45,11 +58,19 @@ class HomePageTagLines(Orderable):
       on_delete=models.SET_NULL,
       related_name='+'
   )
+  read_more_page = models.ForeignKey(
+      'wagtailcore.Page',
+      null=True,
+      blank=True,
+      on_delete=models.SET_NULL,
+      related_name='+',
+  )
 
   panels = [
     FieldPanel('title'),
     FieldPanel('body'),
-    ImageChooserPanel('cover')
+    ImageChooserPanel('cover'),
+    PageChooserPanel('read_more_page')
   ]
 
 class StandardPage(Page):

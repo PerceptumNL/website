@@ -14,6 +14,9 @@
         <h5 class="light grey-text text-lighten-3">
           {{ tagline.body|safe }}
         </h5>
+        {% if tagline.read_more_page %}
+        <a class='btn blue' href='{{ tagline.read_more_page.url }}'>Lees meer</a>
+        {% endif %}
       </div>
     </li>
     {% endfor %}
@@ -35,11 +38,11 @@
           <span class='card-title'>{{ feature.title }}</span>
           <p>{{ feature.body|safe }}</p>
         </div>
-        <!--
+        {% if feature.read_more_page %}
         <div class='card-action blue darken-4'>
-          <a class='white-text' href='#'>Lees meer</a>
+          <a class='white-text' href='{{ feature.read_more_page.url }}'>Lees meer</a>
         </div>
-        -->
+        {% endif %}
       </div>
     </div>
     {% endfor %}
