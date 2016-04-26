@@ -1,0 +1,56 @@
+.template-blogpage .container.main-content {
+  margin-top: -300px;
+  padding-top: 50px;
+}
+
+.template-blogpage .blog-background {
+  height: 300px;
+}
+
+.template-blogpage article .blog-date {
+  margin: -20px -20px 20px -20px;
+  padding: 5px 15px;
+}
+
+.template-blogpage article .block-image img {
+  max-width: 100%;
+}
+
+.template-blogpage article .block-heading {
+  font-size: 2rem;
+  line-height: 110%;
+  margin: 0.82rem -20px 0.656rem -20px;
+  font-weight: 400;
+  padding: 20px;
+}
+
+.template-blogpage article section {
+  margin-bottom: 10px;
+}
+
+.template-blogpage article section h2 {
+  font-size: 120%;
+  padding: 10px;
+  background-color: #ccc;
+}
+
+.template-blogpage article section h3 {
+  font-size: 110%;
+  font-weight: 400;
+}
+
+.template-blogpage article section h4 {
+  font-size: 100%;
+  color: gray;
+}
+
+.template-blogpage article section h5 {
+  font-size: 100%;
+  font-style: italic;
+}
+
+.template-blogpage article .card-title {
+  padding: 10px;
+  font-size: 40px;
+  margin-bottom: 30px;
+}

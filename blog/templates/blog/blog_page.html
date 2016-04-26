@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load l10n wagtailimages_tags %}
+
+{% block body_class %}template-blogpage{% endblock %}
+
+{% block content %}
+<div class='blog-background blue lighten-3'>&nbsp;</div>
+<div class='container main-content'>
+<div class='card'>
+  <div class='card-content'>
+    <article>
+      <div class='blog-date grey darken-3 white-text'>{{ page.date|localize }}</div>
+      <div class='card-title'>{{ page.title }}</div>
+      {% for block in page.body %}
+        {% if block.block_type == 'image' %}
+          <section class='block-image'>
+            {% image block.value original as img %}
+            <img src="{{ img.url }}" alt="{{ img.alt }}" />
+          </section>
+        {% elif block.block_type == 'paragraph' %}
+          <section class='block-paragraph flow-text'>
+            {{ block }}
+          </section>
+        {% elif block.block_type == 'heading' %}
+          <section class='block-heading blue lighten-1 white-text'>
+            {{ block }}
+          </section>
+        {% else %}
+          <section class='block-{{ block.block_type }}'>
+            {{ block }}
+          </section>
+        {% endif %}
+      {% endfor %}
+    </article>
+{% endblock %}
