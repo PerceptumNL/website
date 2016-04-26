@@ -65,3 +65,12 @@
 .template-blogpage article .collection.related-links {
   margin: -10px -20px 0px -20px;
 }
+
+.template-blogpage .blog-list .collection-item .blog-title {
+  font-weight: 600;
+}
+
+.template-blogpage .blog-list .collection-item .abstract {
+  padding-top: 5px;
+  clear: both;
+}

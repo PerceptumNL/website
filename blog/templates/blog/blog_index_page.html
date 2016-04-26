@@ -12,12 +12,13 @@
       <div class='card-title'>{{ page.title }}</div>
     </div>
     {% if blogs %}
-    <div class='collection'>
+    <div class='collection blog-list'>
       {% for blog in blogs %}
-      <a class='collection-item' href='{{ blog.url }}'>
+      <a class='collection-item blue-text' href='{{ blog.url }}'>
         <i class='material-icons left'>description</i>
-        {{ blog.title }}
+        <span class='blog-title'>{{ blog.title }}</span>
         <span class='right'>{{ blog.date|localize }}</span>
+        {% if blog.intro %}
         <div class='abstract'>
           {{ blog.intro|safe }}
         </div>
