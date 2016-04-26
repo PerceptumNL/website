@@ -66,3 +66,7 @@
 .template-homepage .slider .caption a.btn {
   margin-bottom: 20px;
 }
+
+.template-homepage .flow-text h1 {
+  font-size: 250%;
+}
