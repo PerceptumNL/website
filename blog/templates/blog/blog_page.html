@@ -10,7 +10,14 @@
   <div class='card-content'>
     <article>
       <div class='blog-date grey darken-3 white-text'>{{ page.date|localize }}</div>
-      <div class='card-title'>{{ page.title }}</div>
+      <div class='card-header'>
+        <div class='card-title'>{{ page.title }}</div>
+        <div class='tags'>
+          {% for tag in page.tags.all %}
+          <span class='chip'>{{ tag }}</span>
+          {% endfor %}
+        </div>
+      </div>
       {% for block in page.body %}
         {% if block.block_type == 'image' %}
           <section class='block-image'>
@@ -31,5 +38,18 @@
           </section>
         {% endif %}
       {% endfor %}
+      {% if page.related_links.count %}
+      <section class='block-heading blue lighten-1 white-text'>
+        Gerelateerde links
+      </section>
+      <section class='collection related-links'>
+        {% for related_link in page.related_links.all %}
+          <a class='collection-item' href='{{ related_link.link }}'>
+            {{ related_link.title }}
+            <i class='material-icons right'>link</i>
+          </a>
+        {% endfor %}
+      </section>
+      {% endif %}
     </article>
 {% endblock %}

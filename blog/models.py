@@ -10,44 +10,12 @@ from wagtail.wagtailadmin.edit_handlers import (FieldPanel,
                                                 InlinePanel,
                                                 MultiFieldPanel,
                                                 PageChooserPanel)
-from taggit.models import TaggedItemBase
 from modelcluster.fields import ParentalKey
-from modelcluster.contrib.taggit import ClusterTaggableManager
+from modelcluster.tags import ClusterTaggableManager
+from taggit.models import TaggedItemBase
 
 class BlogPageTag(TaggedItemBase):
   content_object = ParentalKey('blog.BlogPage', related_name='tagged_items')
-
-class BlogPage(Page):
-  date = models.DateField("Post date")
-  main_image = models.ForeignKey(
-      'wagtailimages.Image',
-      null=True,
-      blank=True,
-      on_delete=models.SET_NULL,
-      related_name='+'
-  )
-  tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
-  intro = models.CharField(max_length=500, blank=True, default='')
-  body = StreamField([
-    ('heading', blocks.CharBlock(classname="full title")),
-    ('paragraph', blocks.RichTextBlock()),
-    ('image', ImageChooserBlock()),
-  ])
-
-  search_fields = Page.search_fields + (
-    index.SearchField('intro'),
-    index.SearchField('body'),
-  )
-
-  content_panels = Page.content_panels + [
-    FieldPanel('date'),
-    FieldPanel('tags'),
-    FieldPanel('intro'),
-    StreamFieldPanel('body')
-  ]
-
-  promote_panels = Page.promote_panels + [ FieldPanel('tags') ]
-
 
 class LinkFields(models.Model):
   link_external = models.URLField("External link", blank=True)
@@ -86,8 +54,38 @@ class RelatedLink(LinkFields):
   class Meta:
       abstract = True
 
-class BlogIndexRelatedLink(Orderable, RelatedLink):
+class BlogRelatedLink(Orderable, RelatedLink):
     page = ParentalKey('BlogPage', related_name='related_links')
+
+class BlogPage(Page):
+  date = models.DateField("Post date")
+  main_image = models.ForeignKey(
+      'wagtailimages.Image',
+      null=True,
+      blank=True,
+      on_delete=models.SET_NULL,
+      related_name='+'
+  )
+  tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
+  intro = models.CharField(max_length=500, blank=True, default='')
+  body = StreamField([
+    ('heading', blocks.CharBlock(classname="full title")),
+    ('paragraph', blocks.RichTextBlock()),
+    ('image', ImageChooserBlock()),
+  ])
+
+  search_fields = Page.search_fields + (
+    index.SearchField('intro'),
+    index.SearchField('body'),
+  )
+
+  content_panels = Page.content_panels + [
+    FieldPanel('date'),
+    FieldPanel('tags'),
+    FieldPanel('intro'),
+    StreamFieldPanel('body'),
+    InlinePanel('related_links', label="Related links"),
+  ]
 
 class BlogIndexPage(Page):
   intro = RichTextField(blank=True)
