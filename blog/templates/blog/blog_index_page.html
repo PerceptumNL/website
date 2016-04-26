@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load l10n wagtailimages_tags %}
+
+{% block body_class %}template-blogpage{% endblock %}
+
+{% block content %}
+<div class='blog-background blue lighten-3'>&nbsp;</div>
+<div class='container main-content'>
+<div class='card'>
+  <div class='card-content'>
+    <div class='card-header'>
+      <div class='card-title'>{{ page.title }}</div>
+    </div>
+    {% if blogs %}
+    <div class='collection'>
+      {% for blog in blogs %}
+      <a class='collection-item' href='{{ blog.url }}'>
+        <i class='material-icons left'>description</i>
+        {{ blog.title }}
+        <span class='right'>{{ blog.date|localize }}</span>
+        <div class='abstract'>
+          {{ page.intro|safe }}
+        </div>
+      </a>
+      {% endfor %}
+      </div>
+      {% if num_pages > 1 %}
+      <ul class="pagination">
+        <li class="{% if pagenumber == 1%}disabled{% else %}waves-effect{% endif %}">
+          <a {% if pagenumber > 1 %}href="?page={{ pagenumber|add:'-1' }}" {% endif %}>
+            <i class="material-icons">chevron_left</i>
+          </a>
+        </li>
+        {% for page_index in pages %}
+          <li class="{% if pagenumber == page_index %}active{% else %}waves-effect{% endif %}">
+            <a href="?page={{ page_index }}">{{ page_index }}</a>
+          </li>
+        {% endfor %}
+        <li class="{% if pagenumber == num_pages %}disabled{% else %}waves-effect{% endif %}">
+          <a {% if pagenumber < num_pages %}href="?page={{ pagenumber|add:'-1' }}" {% endif %}>
+            <i class="material-icons">chevron_right</i>
+          </a>
+        </li>
+      </ul>
+      {% endif %}
+    {% endif %}
+  </div>
+</div>
+</div>
+{% endblock %}

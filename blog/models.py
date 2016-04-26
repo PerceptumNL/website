@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from wagtail.wagtailcore import blocks
 from wagtail.wagtailcore.models import Page, Orderable
 from wagtail.wagtailcore.fields import StreamField, RichTextField
@@ -120,10 +121,15 @@ class BlogIndexPage(Page):
           blogs = paginator.page(page)
       except PageNotAnInteger:
           blogs = paginator.page(1)
+          page = 1
       except EmptyPage:
           blogs = paginator.page(paginator.num_pages)
+          page = paginator.num_pages
 
       # Update template context
       context = super(BlogIndexPage, self).get_context(request)
       context['blogs'] = blogs
+      context['pages'] = range(1, paginator.num_pages+1)
+      context['pagenumber'] = int(page)
+      context['num_pages'] = paginator.num_pages
       return context
