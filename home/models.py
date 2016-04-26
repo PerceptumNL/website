@@ -51,3 +51,19 @@ class HomePageTagLines(Orderable):
     FieldPanel('body'),
     ImageChooserPanel('cover')
   ]
+
+class StandardPage(Page):
+  body = StreamField([
+    ('heading', blocks.CharBlock(classname="full title")),
+    ('paragraph', blocks.RichTextBlock()),
+    ('image', ImageChooserBlock()),
+  ])
+
+  search_fields = Page.search_fields + (
+    index.SearchField('body'),
+  )
+
+  content_panels = Page.content_panels + [
+    StreamFieldPanel('body'),
+  ]
+
