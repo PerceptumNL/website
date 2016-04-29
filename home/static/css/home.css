@@ -70,3 +70,7 @@
 .template-homepage .flow-text h1 {
   font-size: 250%;
 }
+
+.template-homepage .contact-form-container {
+  padding: 10px 0 20px 0;
+}

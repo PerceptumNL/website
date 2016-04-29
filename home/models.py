@@ -7,6 +7,7 @@ from wagtail.wagtailcore.models import Page, Orderable
 from wagtail.wagtailcore.fields import StreamField, RichTextField
 from wagtail.wagtailadmin.edit_handlers import (FieldPanel,
                                                 InlinePanel,
+                                                MultiFieldPanel,
                                                 PageChooserPanel,
                                                 StreamFieldPanel)
 from wagtail.wagtailimages.blocks import ImageChooserBlock
@@ -18,13 +19,21 @@ from modelcluster.fields import ParentalKey
 class HomePage(Page):
   about_title = models.CharField(max_length=255)
   about = RichTextField()
+  contact_form = models.ForeignKey(
+      'forms.FormPage',
+      null=True,
+      blank=True,
+      on_delete=models.SET_NULL,
+      related_name='+',
+  )
 
 
   content_panels = [
     InlinePanel('taglines', label="Tag lines"),
     FieldPanel('about_title'),
     FieldPanel('about'),
-    InlinePanel('features', label="Features")
+    InlinePanel('features', label="Features"),
+    PageChooserPanel('contact_form'),
   ]
 
 
@@ -87,4 +96,3 @@ class StandardPage(Page):
   content_panels = Page.content_panels + [
     StreamFieldPanel('body'),
   ]
-

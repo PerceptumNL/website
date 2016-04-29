@@ -140,3 +140,7 @@ nav ul li.active a:hover {
 .slider .indicators .indicator-item.active {
   background-color: #2196F3;
 }
+
+form.ajax-form button.submit-btn{
+  margin-top: 10px;
+}
