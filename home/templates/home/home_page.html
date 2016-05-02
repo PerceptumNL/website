@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailimages_tags blog_tags form_tags %}
+{% load wagtailimages_tags blog_tags %}
 
 {% block body_class %}template-homepage{% endblock %}
 
@@ -63,7 +63,13 @@
     <div class="flow-text">{{ page.contact_form.intro|safe }}</div>
     <div class="card">
       <div class="card-content black-text">
-        {% display_ajax_form page.contact_form 'blue lighten-2 white-text' %}
+        <form action="{{ page.contact_form.url }}" class='ajax-form' method="POST">
+          {% csrf_token %}
+          <div class='ajax-form-snippet'>
+          {% include 'forms/form_snippet.html' with form=page.contact_form.get_form %}
+          </div>
+          <button class="btn submit-btn">{{ page.contact_form.submit_text }}</button>
+        </form>
       </div>
     </div>
   </div>

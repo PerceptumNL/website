@@ -1,7 +1,8 @@
 {% load form_tags %}
-<form action="{{ submit_url }}" class='{{ form_class }}' method="POST">
+{{ page.intro|safe }}
+<form action="{{ page.url }}" class='{{ form_class }}' method="POST">
   {% csrf_token %}
-  {% for field in form %}
+  {% for field in page.get_form %}
     <div class="input-field black-text">
       {% if field|is_field_type:'text' %}
       <input {% if field.auto_id %}id="{{ field.auto_id }}"{% endif %}
@@ -25,5 +26,5 @@
       </label>
     </div>
   {% endfor %}
-  <button class="btn {{ submit_btn_class }} submit-btn">{{ submit_text }}</button>
+  <button class="btn submit-btn">{{ page.submit_text }}</button>
 </form>

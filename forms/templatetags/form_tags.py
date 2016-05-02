@@ -27,12 +27,3 @@ def is_field_type(field, typestr):
         for widget in type_widgets[typestr]])
   else:
     return isinstance(field.field.widget, type_widgets.get(typestr))
-
-@register.inclusion_tag('forms/form_page.html', takes_context=True)
-def display_ajax_form(context, form_page, submit_btn_class=None):
-  return {'form': form_page.get_form(),
-          'form_class': 'ajax-form',
-          'submit_url': form_page.url,
-          'submit_text': form_page.submit_text,
-          'submit_btn_class': submit_btn_class or '',
-          'csrf_token': context['csrf_token']}

@@ -74,3 +74,16 @@
 .template-homepage .contact-form-container {
   padding: 10px 0 20px 0;
 }
+
+.template-homepage .contact-form-container .submit-btn {
+  background-color: #64B5F6 !important;
+  color: white;
+}
+
+.template-homepage .contact-form-container .form-field-error {
+  display: block;
+  padding: 5px;
+  margin: -7px 0 7px 10px;
+  background-color: #ef9a9a;
+  color: white;
+}

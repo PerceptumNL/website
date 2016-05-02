@@ -5,7 +5,7 @@ $(document).ready(function(){
     var url = $(this).attr('action');
     var form = this;
     $.post(url, data, function(result){
-      $(form).replaceWith(result);
+      $(form).find('.ajax-form-snippet').first().html(result);
     });
     event.preventDefault();
   });
