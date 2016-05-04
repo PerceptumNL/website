@@ -1,1 +1,4 @@
+{% extends request.is_ajax|yesno:"forms/ajax_form_landing_base.html,forms/form_base.html" %}
+{% block form-content %}
 {{ page.thank_you_text|safe }}
+{% endblock %}

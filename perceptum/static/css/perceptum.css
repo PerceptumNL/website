@@ -144,3 +144,13 @@ nav ul li.active a:hover {
 form.ajax-form button.submit-btn{
   margin-top: 10px;
 }
+
+.container.main-content {
+  margin-top: -300px;
+  padding-top: 50px;
+}
+
+.page-background {
+  height: 300px;
+}
+

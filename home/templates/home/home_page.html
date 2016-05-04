@@ -65,8 +65,10 @@
       <div class="card-content black-text">
         <form action="{{ page.contact_form.url }}" class='ajax-form' method="POST">
           {% csrf_token %}
-          <div class='ajax-form-snippet'>
-          {% include 'forms/form_snippet.html' with form=page.contact_form.get_form %}
+          <div class='ajax-form-snippet' data-url='{{ page.contact_form.url }}'>
+            <div class="progress blue lighten-4">
+              <div class="indeterminate blue"></div>
+            </div>
           </div>
           <button class="btn submit-btn">{{ page.contact_form.submit_text }}</button>
         </form>

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block body_class %}template-formpage{% endblock %}
+
+{% block content %}
+<div class='page-background blue lighten-3'>&nbsp;</div>
+<div class='container main-content'>
+  <div class='card'>
+    <div class='card-content'>
+      <div class='card-header'>
+        <div class='card-title'>{{ page.title }}</div>
+      </div>
+      <article>{% block form-content %}{% endblock %}</article>
+    </div>
+  </div>
+</div>
+{% endblock %}

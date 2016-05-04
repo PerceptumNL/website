@@ -26,14 +26,6 @@ class FormPage(AbstractEmailForm):
         ], "Email")
     ]
 
-    def get_template(self, request):
-      print('get template')
-      if request.is_ajax():
-        print('ajax')
-        return 'forms/form_snippet.html'
-      else:
-        return 'forms/form_page.html'
-
     def serve(self, request):
       from django.shortcuts import render
       if request.method == 'POST':
@@ -44,11 +36,13 @@ class FormPage(AbstractEmailForm):
 
           # render the landing_page
           # TODO: It is much better to redirect to it
-          return render(
+          resp = render(
               request,
               self.landing_page_template,
               self.get_context(request)
           )
+          resp['X-Form-Status'] = 'valid'
+          return resp
       else:
         form = self.get_form()
 
@@ -56,7 +50,7 @@ class FormPage(AbstractEmailForm):
       context['form'] = form
       return render(
         request,
-        self.get_template(request),
+        self.template,
         context
       )
 
