@@ -10,20 +10,25 @@
     <input {% if field.auto_id %}id="{{ field.auto_id }}"{% endif %}
       name="{{ field.name }}"
       class='flow-text'
+      value='{{ field.data|default_if_none:"" }}'
       type="text">
     {% elif field|is_field_type:'email' %}
     <input {% if field.auto_id %}id="{{ field.auto_id }}"{% endif %}
       name="{{ field.name }}"
       class='flow-text'
+      value='{{ field.data|default_if_none:"" }}'
       type="email">
     {% elif field|is_field_type:'textarea' %}
     <textarea {% if field.auto_id %}id="{{ field.auto_id }}"{% endif %}
       name="{{ field.name }}"
-      class="materialize-textarea flow-text"></textarea>
+      class="materialize-textarea flow-text">{{ field.data|default_if_none:"" }}</textarea>
     {% else %}
       {{ field }}
     {% endif %}
-    <label for='{{ field.id_for_label }}'>
+    <label
+      for='{{ field.id_for_label }}'
+      class='{% if field.data and field.data|length > 0 %}active{% endif %}'
+    >
       {% if field.help_text %}
         {{ field.help_text }}
       {% else %}
