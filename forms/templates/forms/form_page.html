@@ -1,11 +1,9 @@
 {% extends request.is_ajax|yesno:"forms/ajax_form_base.html,forms/form_base.html" %}
 {% load form_tags %}
 {% block form-content %}
-{% if not request.is_ajax %}
-{{ page.intro|safe }}
-<form action="{{ page.url }}" class='{{ form_class }}' method="POST">
+{% if not request.is_ajax %}{{ page.intro|safe }}{% endif %}
+<form action="{{ page.url }}" method="POST">
   {% csrf_token %}
-{% endif %}
 {% for field in form %}
   <div class="input-field black-text">
     {% if field|is_field_type:'text' %}
@@ -33,8 +31,6 @@
     {% endfor %}
   </div>
 {% endfor %}
-{% if not request.is_ajax %}
   <button class="btn submit-btn">{{ page.submit_text }}</button>
 </form>
-{% endif %}
 {% endblock %}

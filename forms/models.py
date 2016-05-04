@@ -25,32 +25,3 @@ class FormPage(AbstractEmailForm):
             FieldPanel('subject', classname="full"),
         ], "Email")
     ]
-
-    def serve(self, request):
-      from django.shortcuts import render
-      if request.method == 'POST':
-        form = self.get_form(request.POST)
-
-        if form.is_valid():
-          self.process_form_submission(form)
-
-          # render the landing_page
-          # TODO: It is much better to redirect to it
-          resp = render(
-              request,
-              self.landing_page_template,
-              self.get_context(request)
-          )
-          resp['X-Form-Status'] = 'valid'
-          return resp
-      else:
-        form = self.get_form()
-
-      context = self.get_context(request)
-      context['form'] = form
-      return render(
-        request,
-        self.template,
-        context
-      )
-
