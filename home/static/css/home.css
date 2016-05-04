@@ -87,3 +87,12 @@
   background-color: #ef9a9a;
   color: white;
 }
+
+.template-homepage .flow-text .col .card-content p {
+  font-size: 80%;
+  margin-top: 10px;
+}
+
+.template-homepage .flow-text .col .card-content .card-title {
+  font-size: 110%;
+}
