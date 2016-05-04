@@ -1,0 +1,12 @@
+<p>
+Beste ontvanger,
+
+Iemand heeft het formulier <b>"{{ title }}"</b> ingevuld.
+
+<b>Pagina:</b> {{ referer|urlizetrunc:50 }}
+{% for field, value in items %}<b>{{ field }}:</b> {{ value }}
+{% endfor %}
+
+De Perceptum Website
+<a href='http://perceptum.nl/admin'>http://perceptum.nl/admin</a>
+</p>

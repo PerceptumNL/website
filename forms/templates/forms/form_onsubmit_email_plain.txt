@@ -1,0 +1,10 @@
+Beste ontvanger,
+
+Iemand heeft het formulier "{{ title }}" ingevuld.
+
+Pagina: {{ referer }}
+{% for field, value in items %}{{ field }}: {{ value }}
+{% endfor %}
+
+De Perceptum Website
+http://perceptum.nl/admin
