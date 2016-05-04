@@ -16,6 +16,10 @@
       name="{{ field.name }}"
       class='flow-text'
       type="email">
+    {% elif field|is_field_type:'textarea' %}
+    <textarea {% if field.auto_id %}id="{{ field.auto_id }}"{% endif %}
+      name="{{ field.name }}"
+      class="materialize-textarea flow-text"></textarea>
     {% else %}
       {{ field }}
     {% endif %}
