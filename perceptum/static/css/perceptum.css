@@ -154,3 +154,13 @@ form.ajax-form button.submit-btn{
   height: 300px;
 }
 
+.rich-text ul:not(.collection) {
+  display: block;
+  list-style-type: circle;
+  padding: 0 0 0 40px;
+  margin: 1em 0;
+}
+
+.rich-text ul:not(.collection) li {
+  list-style-type: circle;
+}
