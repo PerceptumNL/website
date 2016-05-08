@@ -28,6 +28,10 @@
   margin-bottom: 10px;
 }
 
+.template-blogpage .card .card-content article section p {
+  margin-bottom: 1em;
+}
+
 .template-blogpage article section h2 {
   font-size: 120%;
   padding: 10px;
