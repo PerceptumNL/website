@@ -17,5 +17,5 @@ pytz==2021.1
 six==1.15.0
 static3==0.6.1
 Unidecode==0.4.19
-wagtail==2.12.3
+wagtail==2.12.5
 Willow==1.4
